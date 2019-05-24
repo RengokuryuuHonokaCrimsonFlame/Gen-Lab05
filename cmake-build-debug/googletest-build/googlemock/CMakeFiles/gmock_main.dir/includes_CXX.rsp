@@ -1,0 +1,1 @@
+-IC:/GEN/Gen-Lab05/src -isystem C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/include -isystem C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src/googlemock -isystem C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src/googletest/include -isystem C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src/googletest 

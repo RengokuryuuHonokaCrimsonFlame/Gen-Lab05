@@ -12,14 +12,10 @@ string Customer::statement()
 {
     double totalAmount = 0;
     int frequentRenterPoints = 0;
-    vector< Rental >::iterator iter = _rentals.begin();
-    vector< Rental >::iterator iter_end = _rentals.end();
     ostringstream result;
     result << "Rental Record for " << getName() << "\n";
-    for ( ; iter != iter_end; ++iter ) {
+    for (auto each : _rentals) {
         double thisAmount = 0;
-        Rental each = *iter;
-
         // determine amounts for each line
         switch ( each.getMovie().getPriceCode() ) {
             case Movie::REGULAR:

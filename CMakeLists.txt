@@ -9,8 +9,9 @@ add_executable(Gen_Lab05
         src/Customer.cpp
         src/Customer.h
         src/main.cpp
-        src/Movie.cpp
         src/Movie.h
+        src/New_Release.h
+        src/Childrens.h
         src/Rental.h)
 
 include(CTest)
@@ -43,6 +44,6 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # Trivial example using gtest and gmock
-add_executable(Alltests src/Test/test.cpp src/Customer.cpp src/Movie.cpp)
+add_executable(Alltests src/Test/test.cpp src/Customer.cpp)
 target_link_libraries(Alltests gtest gmock_main)
 add_test(NAME example_test COMMAND Alltests)

@@ -2,28 +2,30 @@
 #ifndef RENTAL_H
 #define RENTAL_H
 #include "Movie.h"
+#include "New_Release.h"
+#include "Childrens.h"
 
 class Rental {
 public:
-    Rental( const Movie& movie, int daysRented );
+    Rental( Movie& movie, int daysRented );
 
     int getDaysRented() const;
-    const Movie& getMovie() const;
+    const Movie * getMovie() const;
 
 private:
-    Movie _movie;
+    Movie * _movie;
     int _daysRented;
 };
 
 inline Rental::
-Rental( const Movie& movie, int daysRented )
-        : _movie( movie )
+Rental( Movie& movie, int daysRented )
+        : _movie( &movie )
         , _daysRented( daysRented ) {}
 
 inline int Rental::
 getDaysRented() const { return _daysRented; }
 
-inline const Movie& Rental::
+inline const Movie * Rental::
 getMovie() const { return _movie; }
 
 #endif // RENTAL_H

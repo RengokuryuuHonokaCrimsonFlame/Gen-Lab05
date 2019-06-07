@@ -14,6 +14,10 @@ public:
     std::string getName() const;
     std::string statement();
 
+    double determineAmountsForEachLine(int daysRented, const Movie& movie);
+    void showFiguresForThisRental(std::ostringstream& result, const Movie& movie, double amount);
+    void addFooterLines(std::ostringstream& result, double amount, int frequentRenterPoints);
+
 private:
     std::string _name;
     std::vector< Rental > _rentals;

@@ -29,3 +29,48 @@ TEST(CustomerTest, StatementTest) {
     delete ae;
     delete sw;
 }
+
+TEST(CustomerTest, DetermineAmountsTest) {
+
+    Customer customer("Julien");
+    Movie * m = new Movie("Test Movies");
+    ASSERT_EQ(customer.determineAmountsForEachLine(5, *m), 6.5);
+    delete m;
+
+    New_Release * nr = new New_Release( "Test New Releases");
+    ASSERT_EQ(customer.determineAmountsForEachLine(4, *nr), 12);
+    delete nr;
+
+    Children * c = new Children("Test Children");
+    ASSERT_EQ(customer.determineAmountsForEachLine(5, *c), 4.5);
+    delete c;
+}
+
+TEST(CustomerTest, MovieTest) {
+   Movie m = Movie("Test");
+   ASSERT_EQ("Test", m.getTitle());
+   ASSERT_EQ(2, m.getBaseAmount());
+   ASSERT_EQ(2, m.getMaxDay());
+   ASSERT_EQ(1.5, m.getFeePerExpendDay());
+   ASSERT_EQ(false, m.hasBonus());
+}
+
+TEST(CustomerTest, ChildrenTest) {
+    Children m = Children("Massacre à la tronçonneuse");
+    ASSERT_EQ("Massacre à la tronçonneuse", m.getTitle());
+    ASSERT_EQ(1.5, m.getBaseAmount());
+    ASSERT_EQ(3, m.getMaxDay());
+    ASSERT_EQ(1.5, m.getFeePerExpendDay());
+    ASSERT_EQ(false, m.hasBonus());
+}
+
+TEST(CustomerTest, NewReleaseTest) {
+    New_Release m = New_Release("Me and the boys");
+    ASSERT_EQ("Me and the boys", m.getTitle());
+    ASSERT_EQ(0, m.getBaseAmount());
+    ASSERT_EQ(0, m.getMaxDay());
+    ASSERT_EQ(3, m.getFeePerExpendDay());
+    ASSERT_EQ(true, m.hasBonus());
+}
+
+

@@ -18,26 +18,38 @@ string Customer::statement()
 
         const Movie * video = rental.getMovie();
         double thisAmount = 0;
-        // determine amounts for each line
-        thisAmount += video->getBaseAmount() ;
-        if(rental.getDaysRented() > video->getMaxDay()){
-            thisAmount += (rental.getDaysRented() - video->getMaxDay()) * video->getFeePerExpendDay();
-        }
+        thisAmount += determineAmountsForEachLine(rental.getDaysRented(), *video);
 
-        // add frequent renter points
+
         frequentRenterPoints++;
+
         // add bonus for a two day new release rental
         if ( video->hasBonus()
              && rental.getDaysRented() > 1 ) frequentRenterPoints++;
 
-        // show figures for this rental
-        result << "\t" << video->getTitle() << "\t"
-               << thisAmount << "\n";
+        showFiguresForThisRental(result, *video, thisAmount);
         totalAmount += thisAmount;
     }
-    // add footer lines
-    result << "Amount owed is " << totalAmount << "\n";
-    result << "You earned " << frequentRenterPoints
-           << " frequent renter points";
+
+    addFooterLines(result, totalAmount, frequentRenterPoints);
+
     return result.str();
+}
+
+double Customer::determineAmountsForEachLine(int daysRented, const Movie& video){
+    double result = video.getBaseAmount();
+    if(daysRented > video.getMaxDay()){
+        result += (daysRented - video.getMaxDay()) * video.getFeePerExpendDay();
+    }
+    return result;
+}
+
+void Customer::showFiguresForThisRental(ostringstream& result, const Movie& video, double amount){
+    result << "\t" + video.getTitle() << "\t" << amount << "\n";
+}
+
+void Customer::addFooterLines(std::ostringstream& result, double amount, int frequentRenterPoints){
+    result << "Amount owed is " << amount << "\n"
+           << "You earned " << frequentRenterPoints
+           << " frequent renter points";
 }

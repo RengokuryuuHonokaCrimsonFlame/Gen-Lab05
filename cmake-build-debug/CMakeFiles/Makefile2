@@ -1000,8 +1000,8 @@ clean: CMakeFiles/ContinuousMemCheck.dir/clean
 # Target rules for target CMakeFiles/Alltests.dir
 
 # All Build rule for target.
-CMakeFiles/Alltests.dir/all: googletest-build/googletest/CMakeFiles/gtest.dir/all
 CMakeFiles/Alltests.dir/all: googletest-build/googlemock/CMakeFiles/gmock.dir/all
+CMakeFiles/Alltests.dir/all: googletest-build/googletest/CMakeFiles/gtest.dir/all
 CMakeFiles/Alltests.dir/all: googletest-build/googlemock/CMakeFiles/gmock_main.dir/all
 	$(MAKE) -f CMakeFiles\Alltests.dir\build.make CMakeFiles/Alltests.dir/depend
 	$(MAKE) -f CMakeFiles\Alltests.dir\build.make CMakeFiles/Alltests.dir/build
@@ -1079,8 +1079,8 @@ googletest-build/googlemock/preinstall: googletest-build/googletest/preinstall
 # Target rules for target googletest-build/googlemock/CMakeFiles/gmock_main.dir
 
 # All Build rule for target.
-googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: googletest-build/googletest/CMakeFiles/gtest.dir/all
 googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: googletest-build/googlemock/CMakeFiles/gmock.dir/all
+googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: googletest-build/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f googletest-build\googlemock\CMakeFiles\gmock_main.dir\build.make googletest-build/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f googletest-build\googlemock\CMakeFiles\gmock_main.dir\build.make googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\GEN\Gen-Lab05\cmake-build-debug\CMakeFiles --progress-num=9,10 "Built target gmock_main"

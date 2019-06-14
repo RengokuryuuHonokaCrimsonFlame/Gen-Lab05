@@ -12,7 +12,11 @@ add_executable(Gen_Lab05
         src/Movie.h
         src/New_Release.h
         src/Childrens.h
-        src/Rental.h)
+        src/Rental.h
+        src/MockChildren.h
+        src/MockMovie.h
+        src/MockNew_Release.h
+        src/MockRental.h)
 
 include(CTest)
 

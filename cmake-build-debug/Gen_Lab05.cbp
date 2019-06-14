@@ -436,6 +436,18 @@
 		<Unit filename="C:/GEN/Gen-Lab05/src/Customer.h">
 			<Option target="Gen_Lab05"/>
 		</Unit>
+		<Unit filename="C:/GEN/Gen-Lab05/src/MockChildren.h">
+			<Option target="Gen_Lab05"/>
+		</Unit>
+		<Unit filename="C:/GEN/Gen-Lab05/src/MockMovie.h">
+			<Option target="Gen_Lab05"/>
+		</Unit>
+		<Unit filename="C:/GEN/Gen-Lab05/src/MockNew_Release.h">
+			<Option target="Gen_Lab05"/>
+		</Unit>
+		<Unit filename="C:/GEN/Gen-Lab05/src/MockRental.h">
+			<Option target="Gen_Lab05"/>
+		</Unit>
 		<Unit filename="C:/GEN/Gen-Lab05/src/Movie.h">
 			<Option target="Gen_Lab05"/>
 		</Unit>

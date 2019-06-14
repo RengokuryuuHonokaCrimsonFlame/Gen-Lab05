@@ -10,8 +10,8 @@ TEST(CustomerTest, StatementTest) {
     Customer customer("Olivier");
 
     Movie * kk = new Movie("Karate Kid");
-    New_Release * ae = new New_Release( "Avengers: Endgame");
-    Children * sw = new Children("Snow White");
+    Movie * ae = new New_Release( "Avengers: Endgame");
+    Movie * sw = new Children("Snow White");
 
     customer.addRental( Rental( *kk, 7));
     customer.addRental( Rental( *ae, 5));
@@ -71,6 +71,14 @@ TEST(CustomerTest, NewReleaseTest) {
     ASSERT_EQ(0, m.getMaxDay());
     ASSERT_EQ(3, m.getFeePerExpendDay());
     ASSERT_EQ(true, m.hasBonus());
+}
+
+TEST(CustomerTest, AddFooterLinesTest){
+
+}
+
+TEST(CustomerTest, AddBonusForATwoDayNewReleaseRentalTest) {
+
 }
 
 

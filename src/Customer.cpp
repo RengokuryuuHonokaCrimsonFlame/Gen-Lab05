@@ -16,18 +16,16 @@ string Customer::statement()
     result << "Rental Record for " << getName() << "\n";
     for (auto rental : _rentals) {
 
-        const Movie * video = rental.getMovie();
         double thisAmount = 0;
-        thisAmount += determineAmountsForEachLine(rental.getDaysRented(), *video);
+        thisAmount += determineAmountsForEachLine(rental.getDaysRented(), *rental.getMovie());
 
 
         frequentRenterPoints++;
 
         // add bonus for a two day new release rental
-        if ( video->hasBonus()
-             && rental.getDaysRented() > 1 ) frequentRenterPoints++;
+        if (addBonusForATwoDayNewReleaseRental(rental)) frequentRenterPoints++;
 
-        showFiguresForThisRental(result, *video, thisAmount);
+        showFiguresForThisRental(result, *rental.getMovie(), thisAmount);
         totalAmount += thisAmount;
     }
 
@@ -52,4 +50,8 @@ void Customer::addFooterLines(std::ostringstream& result, double amount, int fre
     result << "Amount owed is " << amount << "\n"
            << "You earned " << frequentRenterPoints
            << " frequent renter points";
+}
+
+bool Customer::addBonusForATwoDayNewReleaseRental(Rental rental){
+    return  rental.getMovie()->hasBonus() && rental.getDaysRented() > 1;
 }

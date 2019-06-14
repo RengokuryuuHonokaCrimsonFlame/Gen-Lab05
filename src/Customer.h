@@ -17,6 +17,7 @@ public:
     double determineAmountsForEachLine(int daysRented, const Movie& movie);
     void showFiguresForThisRental(std::ostringstream& result, const Movie& movie, double amount);
     void addFooterLines(std::ostringstream& result, double amount, int frequentRenterPoints);
+    bool addBonusForATwoDayNewReleaseRental(Rental rental);
 
 private:
     std::string _name;

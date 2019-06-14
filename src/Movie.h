@@ -6,6 +6,7 @@
 class Movie {
 public:
     Movie( const std::string& title );
+    Movie();
     virtual ~Movie();
     virtual std::string getTitle() const;
     virtual double getBaseAmount() const;

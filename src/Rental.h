@@ -9,6 +9,7 @@
 class Rental {
 public:
     Rental( Movie& movie, int daysRented );
+    Rental();
     virtual ~Rental();
     virtual int getDaysRented() const;
     virtual const Movie * getMovie() const;

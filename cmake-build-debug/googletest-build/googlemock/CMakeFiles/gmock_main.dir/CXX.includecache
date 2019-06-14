@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/gmock_main.cc
+/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/gmock_main.cc
 iostream
 -
 gmock/gmock.h
-C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/gmock/gmock.h
+/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/gmock/gmock.h
 gtest/gtest.h
-C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/gtest/gtest.h
+/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/gtest/gtest.h
 tchar.h
 -
 

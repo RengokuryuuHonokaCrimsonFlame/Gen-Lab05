@@ -5,6 +5,44 @@
 // Tests statement method
 #include <Customer.h>
 #include "gtest/gtest.h"
+#include <gmock/gmock.h>
+#include "memory.h"
+
+using ::testing::Return;
+
+class MockMovie : public Movie{
+public:
+    MOCK_CONST_METHOD0(getBaseAmount, double() );
+    MOCK_CONST_METHOD0(getMaxDay, int());
+    MOCK_CONST_METHOD0(getFeePerExpendDay, double());
+    MOCK_CONST_METHOD0(hasBonus, bool());
+};
+
+class MockNew_Release : public New_Release{
+public:
+    MOCK_CONST_METHOD0(getBaseAmount, double());
+    MOCK_CONST_METHOD0(getMaxDay, int());
+    MOCK_CONST_METHOD0(getFeePerExpendDay, double());
+    MOCK_CONST_METHOD0(hasBonus, bool());
+};
+
+class MockChildren : public Children{
+public:
+    MOCK_CONST_METHOD0(getBaseAmount, double());
+    MOCK_CONST_METHOD0(getMaxDay, int());
+    MOCK_CONST_METHOD0(getFeePerExpendDay, double());
+    MOCK_CONST_METHOD0(hasBonus, bool());
+};
+
+class MockRental : public Rental{
+public:
+    MOCK_METHOD0(getDaysRented, int());
+    MOCK_METHOD0(getMovie, const Movie*());
+    MOCK_CONST_METHOD0(addBonusForATwoDayNewReleaseRental, bool());
+    MOCK_CONST_METHOD2(showFiguresForThisRental, void (std::ostringstream& result, double amount));
+};
+
+
 
 TEST(CustomerTest, StatementTest) {
     Customer customer("Olivier");
@@ -73,12 +111,23 @@ TEST(CustomerTest, NewReleaseTest) {
     ASSERT_EQ(true, m.hasBonus());
 }
 
+/*
 TEST(CustomerTest, AddFooterLinesTest){
+Customer c = Customer("Jupiter");
+std::ostringstream os;
+c.addFooterLines(os,5.5,3);
+ASSERT_EQ("Amount owed is 5.5\nYou earned 3 frequent renter points", os);
+}*/
 
-}
-
+/*
 TEST(CustomerTest, AddBonusForATwoDayNewReleaseRentalTest) {
+    std::unique_ptr<MockMovie> m(new MockMovie());
+   // std::unique_ptr<MockNew_Release> m2(new MockNew_Release());
+    Rental r(*m,20);
 
+    EXPECT_CALL(*m,hasBonus()).WillRepeatedly(Return(false));
+
+    ASSERT_EQ(false, r.addBonusForATwoDayNewReleaseRental());
 }
 
-
+*/

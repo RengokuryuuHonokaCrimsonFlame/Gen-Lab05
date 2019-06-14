@@ -12,6 +12,7 @@ public:
     New_Release( const std::string& title )
             : Movie(title)
     {}
+    New_Release();
     virtual ~New_Release();
     virtual double getBaseAmount() const;
     virtual int getMaxDay() const;

@@ -4,21 +4,21 @@ endif()
 
 set(run 0)
 
-if("C:/GEN/Gen-Lab05/cmake-build-debug/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-gitinfo.txt" IS_NEWER_THAN "C:/GEN/Gen-Lab05/cmake-build-debug/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-gitclone-lastrun.txt")
+if("/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-gitinfo.txt" IS_NEWER_THAN "/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-gitclone-lastrun.txt")
   set(run 1)
 endif()
 
 if(NOT run)
-  message(STATUS "Avoiding repeated git clone, stamp file is up to date: 'C:/GEN/Gen-Lab05/cmake-build-debug/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-gitclone-lastrun.txt'")
+  message(STATUS "Avoiding repeated git clone, stamp file is up to date: '/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-gitclone-lastrun.txt'")
   return()
 endif()
 
 execute_process(
-  COMMAND ${CMAKE_COMMAND} -E remove_directory "C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src"
+  COMMAND ${CMAKE_COMMAND} -E remove_directory "/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src"
   RESULT_VARIABLE error_code
   )
 if(error_code)
-  message(FATAL_ERROR "Failed to remove directory: 'C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src'")
+  message(FATAL_ERROR "Failed to remove directory: '/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src'")
 endif()
 
 set(git_options)
@@ -52,8 +52,8 @@ set(error_code 1)
 set(number_of_tries 0)
 while(error_code AND number_of_tries LESS 3)
   execute_process(
-    COMMAND "C:/Program Files/Git/cmd/git.exe" ${git_options} clone ${git_clone_options} --origin "origin" "https://github.com/google/googletest.git" "googletest-src"
-    WORKING_DIRECTORY "C:/GEN/Gen-Lab05/cmake-build-debug"
+    COMMAND "/usr/bin/git" ${git_options} clone ${git_clone_options} --origin "origin" "https://github.com/google/googletest.git" "googletest-src"
+    WORKING_DIRECTORY "/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug"
     RESULT_VARIABLE error_code
     )
   math(EXPR number_of_tries "${number_of_tries} + 1")
@@ -67,8 +67,8 @@ if(error_code)
 endif()
 
 execute_process(
-  COMMAND "C:/Program Files/Git/cmd/git.exe" ${git_options} checkout master --
-  WORKING_DIRECTORY "C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src"
+  COMMAND "/usr/bin/git" ${git_options} checkout master --
+  WORKING_DIRECTORY "/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src"
   RESULT_VARIABLE error_code
   )
 if(error_code)
@@ -76,33 +76,33 @@ if(error_code)
 endif()
 
 execute_process(
-  COMMAND "C:/Program Files/Git/cmd/git.exe" ${git_options} submodule init 
-  WORKING_DIRECTORY "C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src"
+  COMMAND "/usr/bin/git" ${git_options} submodule init 
+  WORKING_DIRECTORY "/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src"
   RESULT_VARIABLE error_code
   )
 if(error_code)
-  message(FATAL_ERROR "Failed to init submodules in: 'C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src'")
+  message(FATAL_ERROR "Failed to init submodules in: '/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src'")
 endif()
 
 execute_process(
-  COMMAND "C:/Program Files/Git/cmd/git.exe" ${git_options} submodule update --recursive --init 
-  WORKING_DIRECTORY "C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src"
+  COMMAND "/usr/bin/git" ${git_options} submodule update --recursive --init 
+  WORKING_DIRECTORY "/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src"
   RESULT_VARIABLE error_code
   )
 if(error_code)
-  message(FATAL_ERROR "Failed to update submodules in: 'C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src'")
+  message(FATAL_ERROR "Failed to update submodules in: '/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src'")
 endif()
 
 # Complete success, update the script-last-run stamp file:
 #
 execute_process(
   COMMAND ${CMAKE_COMMAND} -E copy
-    "C:/GEN/Gen-Lab05/cmake-build-debug/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-gitinfo.txt"
-    "C:/GEN/Gen-Lab05/cmake-build-debug/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-gitclone-lastrun.txt"
-  WORKING_DIRECTORY "C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src"
+    "/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-gitinfo.txt"
+    "/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-gitclone-lastrun.txt"
+  WORKING_DIRECTORY "/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src"
   RESULT_VARIABLE error_code
   )
 if(error_code)
-  message(FATAL_ERROR "Failed to copy script-last-run stamp file: 'C:/GEN/Gen-Lab05/cmake-build-debug/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-gitclone-lastrun.txt'")
+  message(FATAL_ERROR "Failed to copy script-last-run stamp file: '/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-gitclone-lastrun.txt'")
 endif()
 

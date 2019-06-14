@@ -1,10 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Gen_Lab05.dir/src/Customer.cpp.obj"
-  "CMakeFiles/Gen_Lab05.dir/src/main.cpp.obj"
+  "CMakeFiles/Gen_Lab05.dir/src/Customer.cpp.o"
+  "CMakeFiles/Gen_Lab05.dir/src/main.cpp.o"
   "Gen_Lab05.pdb"
-  "Gen_Lab05.exe"
-  "Gen_Lab05.exe.manifest"
-  "libGen_Lab05.dll.a"
+  "Gen_Lab05"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -9,15 +9,14 @@ class Customer {
 public:
     Customer();
     explicit Customer( const std::string& name );
+    virtual ~Customer();
 
-    void addRental( const Rental& arg );
-    std::string getName() const;
-    std::string statement();
+    virtual void addRental( const Rental& arg );
+    virtual std::string getName() const;
+    virtual std::string statement();
 
-    double determineAmountsForEachLine(int daysRented, const Movie& movie);
-    void showFiguresForThisRental(std::ostringstream& result, const Movie& movie, double amount);
-    void addFooterLines(std::ostringstream& result, double amount, int frequentRenterPoints);
-    bool addBonusForATwoDayNewReleaseRental(Rental rental);
+    virtual double determineAmountsForEachLine(int daysRented, const Movie& movie);
+    virtual void addFooterLines(std::ostringstream& result, double amount, int frequentRenterPoints);
 
 private:
     std::string _name;
@@ -30,6 +29,8 @@ Customer() {}
 inline Customer::
 Customer( const std::string& name )
         : _name( name ) {}
+
+inline Customer::~Customer() {}
 
 inline void Customer::
 addRental( const Rental& arg ) { _rentals.push_back( arg ); }

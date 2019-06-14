@@ -22,10 +22,9 @@ string Customer::statement()
 
         frequentRenterPoints++;
 
-        // add bonus for a two day new release rental
-        if (addBonusForATwoDayNewReleaseRental(rental)) frequentRenterPoints++;
+        if (rental.addBonusForATwoDayNewReleaseRental()) frequentRenterPoints++;
 
-        showFiguresForThisRental(result, *rental.getMovie(), thisAmount);
+        rental.showFiguresForThisRental(result, thisAmount);
         totalAmount += thisAmount;
     }
 
@@ -42,16 +41,8 @@ double Customer::determineAmountsForEachLine(int daysRented, const Movie& video)
     return result;
 }
 
-void Customer::showFiguresForThisRental(ostringstream& result, const Movie& video, double amount){
-    result << "\t" + video.getTitle() << "\t" << amount << "\n";
-}
-
 void Customer::addFooterLines(std::ostringstream& result, double amount, int frequentRenterPoints){
     result << "Amount owed is " << amount << "\n"
            << "You earned " << frequentRenterPoints
            << " frequent renter points";
-}
-
-bool Customer::addBonusForATwoDayNewReleaseRental(Rental rental){
-    return  rental.getMovie()->hasBonus() && rental.getDaysRented() > 1;
 }

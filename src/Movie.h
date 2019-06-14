@@ -6,8 +6,8 @@
 class Movie {
 public:
     Movie( const std::string& title );
-
-    std::string getTitle() const;
+    virtual ~Movie();
+    virtual std::string getTitle() const;
     virtual double getBaseAmount() const;
     virtual int getMaxDay() const;
     virtual double getFeePerExpendDay() const;
@@ -21,7 +21,7 @@ inline Movie::
 Movie( const std::string& title )
         : _title( title )
 {}
-
+inline Movie::~Movie(){}
 inline std::string Movie::
 getTitle() const { return _title; }
 

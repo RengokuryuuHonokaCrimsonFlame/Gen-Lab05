@@ -2,7 +2,7 @@
 #ifndef RENTAL_H
 #define RENTAL_H
 #include "Movie.h"
-#include "New_Release.h"
+#include "NewRelease.h"
 #include "Childrens.h"
 #include <sstream>
 
@@ -11,9 +11,10 @@ public:
     Rental( Movie& movie, int daysRented );
     virtual ~Rental();
     virtual int getDaysRented() const;
+    virtual double determineAmountsForEachLine() const;
     virtual const Movie * getMovie() const;
     virtual bool addBonusForATwoDayNewReleaseRental() const;
-    virtual void showFiguresForThisRental(std::ostringstream& result, double amount) const;
+    virtual std::string getMovieName() const;
 
 protected:
     Rental();
@@ -28,7 +29,7 @@ Rental( Movie& movie, int daysRented )
         : _movie( &movie )
         , _daysRented( daysRented ) {}
 
-inline Rental::Rental(){};
+inline Rental::Rental(){}
 
 inline Rental::~Rental(){}
 
@@ -36,12 +37,20 @@ inline int Rental::getDaysRented() const { return _daysRented; }
 
 inline const Movie * Rental::getMovie() const { return _movie; }
 
+inline double Rental::determineAmountsForEachLine() const {
+    double result = _movie->getBaseAmount();
+    if(_daysRented > _movie->getMaxDay()){
+        result += (_daysRented - _movie->getMaxDay()) * _movie->getFeePerExpendDay();
+    }
+    return result;
+}
+
 inline bool Rental::addBonusForATwoDayNewReleaseRental() const{
     return  _movie->hasBonus() && getDaysRented() > 1;
 }
 
-inline void Rental::showFiguresForThisRental(std::ostringstream &result, double amount) const {
-    result << "\t" + _movie->getTitle() << "\t" << amount << "\n";
+inline std::string Rental::getMovieName() const{
+    return _movie->getTitle();
 }
 
 #endif // RENTAL_H

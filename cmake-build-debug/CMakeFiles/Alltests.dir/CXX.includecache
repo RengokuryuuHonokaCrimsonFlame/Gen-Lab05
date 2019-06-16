@@ -22,15 +22,15 @@ Rental.h
 string
 -
 
-../src/New_Release.h
+../src/NewRelease.h
 Movie.h
 ../src/Movie.h
 
 ../src/Rental.h
 Movie.h
 ../src/Movie.h
-New_Release.h
-../src/New_Release.h
+NewRelease.h
+../src/NewRelease.h
 Childrens.h
 ../src/Childrens.h
 sstream

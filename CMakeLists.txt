@@ -10,7 +10,7 @@ add_executable(Gen_Lab05
         src/Customer.h
         src/main.cpp
         src/Movie.h
-        src/New_Release.h
+        src/NewRelease.h
         src/Childrens.h
         src/Rental.h
         )

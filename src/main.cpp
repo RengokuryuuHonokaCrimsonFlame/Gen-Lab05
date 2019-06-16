@@ -7,7 +7,7 @@ int main() {
     Customer customer("Olivier");
 
     Movie * kk = new Movie("Karate Kid");
-    New_Release * ae = new New_Release( "Avengers: Endgame");
+    NewRelease * ae = new NewRelease( "Avengers: Endgame");
     Children * sw = new Children("Snow White");
 
     customer.addRental( Rental( *kk, 7));

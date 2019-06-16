@@ -14,17 +14,17 @@ string Customer::statement()
     int frequentRenterPoints = 0;
     ostringstream result;
     result << "Rental Record for " << getName() << "\n";
-    for (auto rental : _rentals) {
+    for (Rental rental : _rentals) {
 
         double thisAmount = 0;
-        thisAmount += determineAmountsForEachLine(rental.getDaysRented(), *rental.getMovie());
+        thisAmount += rental.determineAmountsForEachLine();
 
 
         frequentRenterPoints++;
 
         if (rental.addBonusForATwoDayNewReleaseRental()) frequentRenterPoints++;
 
-        rental.showFiguresForThisRental(result, thisAmount);
+        result << "\t" << rental.getMovieName() << "\t" << thisAmount << "\n";
         totalAmount += thisAmount;
     }
 
@@ -33,13 +33,6 @@ string Customer::statement()
     return result.str();
 }
 
-double Customer::determineAmountsForEachLine(int daysRented, const Movie& video){
-    double result = video.getBaseAmount();
-    if(daysRented > video.getMaxDay()){
-        result += (daysRented - video.getMaxDay()) * video.getFeePerExpendDay();
-    }
-    return result;
-}
 
 void Customer::addFooterLines(std::ostringstream& result, double amount, int frequentRenterPoints){
     result << "Amount owed is " << amount << "\n"

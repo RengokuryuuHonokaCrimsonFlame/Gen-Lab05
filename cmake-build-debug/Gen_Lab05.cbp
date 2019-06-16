@@ -439,7 +439,7 @@
 		<Unit filename="C:/GEN/Gen-Lab05/src/Movie.h">
 			<Option target="Gen_Lab05"/>
 		</Unit>
-		<Unit filename="C:/GEN/Gen-Lab05/src/New_Release.h">
+		<Unit filename="C:/GEN/Gen-Lab05/src/NewRelease.h">
 			<Option target="Gen_Lab05"/>
 		</Unit>
 		<Unit filename="C:/GEN/Gen-Lab05/src/Rental.h">

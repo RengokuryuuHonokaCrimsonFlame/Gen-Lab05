@@ -18,7 +18,7 @@ public:
     MOCK_CONST_METHOD0(hasBonus, bool());
 };
 
-class MockNew_Release : public New_Release{
+class MockNewRelease : public NewRelease{
 public:
     MOCK_CONST_METHOD0(getBaseAmount, double());
     MOCK_CONST_METHOD0(getMaxDay, int());
@@ -39,7 +39,8 @@ public:
     MOCK_METHOD0(getDaysRented, int());
     MOCK_METHOD0(getMovie, const Movie*());
     MOCK_CONST_METHOD0(addBonusForATwoDayNewReleaseRental, bool());
-    MOCK_CONST_METHOD2(showFiguresForThisRental, void (std::ostringstream& result, double amount));
+    MOCK_CONST_METHOD0(determineAmountsForEachLine, double());
+    MOCK_CONST_METHOD0(getMovieName, std::string());
 };
 
 
@@ -47,13 +48,22 @@ public:
 TEST(CustomerTest, StatementTest) {
     Customer customer("Olivier");
 
-    Movie * kk = new Movie("Karate Kid");
-    Movie * ae = new New_Release( "Avengers: Endgame");
-    Movie * sw = new Children("Snow White");
+    std::unique_ptr<MockRental> r1(new MockRental);
+    EXPECT_CALL(*r1, getMovieName()).WillRepeatedly(Return("Karate Kid"));
+    EXPECT_CALL(*r1, determineAmountsForEachLine()).WillRepeatedly(Return(9.5));
 
-    customer.addRental( Rental( *kk, 7));
-    customer.addRental( Rental( *ae, 5));
-    customer.addRental( Rental( *sw, 3 ));
+    std::unique_ptr<MockRental> r2(new MockRental);
+    EXPECT_CALL(*r2, getMovieName()).WillRepeatedly(Return("Avengers: Endgame"));
+    EXPECT_CALL(*r2, determineAmountsForEachLine()).WillRepeatedly(Return(15));
+
+    std::unique_ptr<MockRental> r3(new MockRental);
+    EXPECT_CALL(*r3, getMovieName()).WillRepeatedly(Return("Snow White"));
+    EXPECT_CALL(*r3, determineAmountsForEachLine()).WillRepeatedly(Return(1.5));
+
+    customer.addRental(*r1);
+    customer.addRental(*r2);
+    customer.addRental(*r3);
+
     std::string exceptedOutput = "Rental Record for Olivier\n"
                                  "\tKarate Kid\t9.5\n"
                                  "\tAvengers: Endgame\t15\n"
@@ -62,53 +72,6 @@ TEST(CustomerTest, StatementTest) {
                                  "You earned 4 frequent renter points";
 
     ASSERT_EQ(customer.statement(), exceptedOutput);
-
-    delete kk;
-    delete ae;
-    delete sw;
-}
-
-TEST(CustomerTest, DetermineAmountsTest) {
-
-    Customer customer("Julien");
-    Movie * m = new Movie("Test Movies");
-    ASSERT_EQ(customer.determineAmountsForEachLine(5, *m), 6.5);
-    delete m;
-
-    New_Release * nr = new New_Release( "Test New Releases");
-    ASSERT_EQ(customer.determineAmountsForEachLine(4, *nr), 12);
-    delete nr;
-
-    Children * c = new Children("Test Children");
-    ASSERT_EQ(customer.determineAmountsForEachLine(5, *c), 4.5);
-    delete c;
-}
-
-TEST(CustomerTest, MovieTest) {
-   Movie m = Movie("Test");
-   ASSERT_EQ("Test", m.getTitle());
-   ASSERT_EQ(2, m.getBaseAmount());
-   ASSERT_EQ(2, m.getMaxDay());
-   ASSERT_EQ(1.5, m.getFeePerExpendDay());
-   ASSERT_EQ(false, m.hasBonus());
-}
-
-TEST(CustomerTest, ChildrenTest) {
-    Children m = Children("Massacre à la tronçonneuse");
-    ASSERT_EQ("Massacre à la tronçonneuse", m.getTitle());
-    ASSERT_EQ(1.5, m.getBaseAmount());
-    ASSERT_EQ(3, m.getMaxDay());
-    ASSERT_EQ(1.5, m.getFeePerExpendDay());
-    ASSERT_EQ(false, m.hasBonus());
-}
-
-TEST(CustomerTest, NewReleaseTest) {
-    New_Release m = New_Release("Me and the boys");
-    ASSERT_EQ("Me and the boys", m.getTitle());
-    ASSERT_EQ(0, m.getBaseAmount());
-    ASSERT_EQ(0, m.getMaxDay());
-    ASSERT_EQ(3, m.getFeePerExpendDay());
-    ASSERT_EQ(true, m.hasBonus());
 }
 
 
@@ -119,9 +82,37 @@ TEST(CustomerTest, AddFooterLinesTest){
     ASSERT_EQ("Amount owed is 5.5\nYou earned 3 frequent renter points", os.str());
 }
 
-TEST(CustomerTest, AddBonusForATwoDayNewReleaseRentalTest) {
+TEST(RentalTest, DetermineAmountsTest) {
+
+    std::unique_ptr<MockMovie> m (new MockMovie());
+    EXPECT_CALL(*m, getBaseAmount()).WillRepeatedly(Return(2));
+    EXPECT_CALL(*m, getMaxDay()).WillRepeatedly(Return(2));
+    EXPECT_CALL(*m, getFeePerExpendDay()).WillRepeatedly(Return(1.5));
+
+    Rental r1(*m, 5);
+    ASSERT_EQ(r1.determineAmountsForEachLine(), 6.5);
+
+    std::unique_ptr<MockNewRelease> nr (new MockNewRelease());
+    EXPECT_CALL(*nr, getBaseAmount()).WillRepeatedly(Return(0));
+    EXPECT_CALL(*nr, getMaxDay()).WillRepeatedly(Return(0));
+    EXPECT_CALL(*nr, getFeePerExpendDay()).WillRepeatedly(Return(3));
+
+    Rental r2(*nr, 4);
+    ASSERT_EQ(r2.determineAmountsForEachLine(), 12);
+
+    std::unique_ptr<MockChildren> c(new MockChildren());
+    EXPECT_CALL(*c, getBaseAmount()).WillRepeatedly(Return(1.5));
+    EXPECT_CALL(*c, getMaxDay()).WillRepeatedly(Return(3));
+    EXPECT_CALL(*c, getFeePerExpendDay()).WillRepeatedly(Return(1.5));
+
+    Rental r3(*c, 5);
+    ASSERT_EQ(r3.determineAmountsForEachLine(), 4.5);
+}
+
+
+TEST(RentalTest, AddBonusForATwoDayNewReleaseRentalTest) {
     std::unique_ptr<MockMovie> m(new MockMovie());
-    std::unique_ptr<MockNew_Release> m2(new MockNew_Release());
+    std::unique_ptr<MockNewRelease> m2(new MockNewRelease());
 
     EXPECT_CALL(*m,hasBonus()).WillRepeatedly(Return(false));
     EXPECT_CALL(*m2, hasBonus()).WillRepeatedly(Return(true));
@@ -131,4 +122,31 @@ TEST(CustomerTest, AddBonusForATwoDayNewReleaseRentalTest) {
 
     ASSERT_EQ(false, r.addBonusForATwoDayNewReleaseRental());
     ASSERT_EQ(true, r2.addBonusForATwoDayNewReleaseRental());
+}
+
+TEST(MovieTest, MovieTest) {
+    Movie m = Movie("Test");
+    ASSERT_EQ("Test", m.getTitle());
+    ASSERT_EQ(2, m.getBaseAmount());
+    ASSERT_EQ(2, m.getMaxDay());
+    ASSERT_EQ(1.5, m.getFeePerExpendDay());
+    ASSERT_EQ(false, m.hasBonus());
+}
+
+TEST(ChildrenTest, ChildrenTest) {
+    Children m = Children("Massacre à la tronçonneuse");
+    ASSERT_EQ("Massacre à la tronçonneuse", m.getTitle());
+    ASSERT_EQ(1.5, m.getBaseAmount());
+    ASSERT_EQ(3, m.getMaxDay());
+    ASSERT_EQ(1.5, m.getFeePerExpendDay());
+    ASSERT_EQ(false, m.hasBonus());
+}
+
+TEST(NewReleaseTest, NewReleaseTest) {
+    NewRelease m = NewRelease("Me and the boys");
+    ASSERT_EQ("Me and the boys", m.getTitle());
+    ASSERT_EQ(0, m.getBaseAmount());
+    ASSERT_EQ(0, m.getMaxDay());
+    ASSERT_EQ(3, m.getFeePerExpendDay());
+    ASSERT_EQ(true, m.hasBonus());
 }

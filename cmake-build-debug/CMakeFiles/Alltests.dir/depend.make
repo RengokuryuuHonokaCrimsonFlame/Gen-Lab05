@@ -5,13 +5,13 @@ CMakeFiles/Alltests.dir/src/Customer.cpp.obj: ../src/Childrens.h
 CMakeFiles/Alltests.dir/src/Customer.cpp.obj: ../src/Customer.cpp
 CMakeFiles/Alltests.dir/src/Customer.cpp.obj: ../src/Customer.h
 CMakeFiles/Alltests.dir/src/Customer.cpp.obj: ../src/Movie.h
-CMakeFiles/Alltests.dir/src/Customer.cpp.obj: ../src/New_Release.h
+CMakeFiles/Alltests.dir/src/Customer.cpp.obj: ../src/NewRelease.h
 CMakeFiles/Alltests.dir/src/Customer.cpp.obj: ../src/Rental.h
 
 CMakeFiles/Alltests.dir/src/Test/test.cpp.obj: ../src/Childrens.h
 CMakeFiles/Alltests.dir/src/Test/test.cpp.obj: ../src/Customer.h
 CMakeFiles/Alltests.dir/src/Test/test.cpp.obj: ../src/Movie.h
-CMakeFiles/Alltests.dir/src/Test/test.cpp.obj: ../src/New_Release.h
+CMakeFiles/Alltests.dir/src/Test/test.cpp.obj: ../src/NewRelease.h
 CMakeFiles/Alltests.dir/src/Test/test.cpp.obj: ../src/Rental.h
 CMakeFiles/Alltests.dir/src/Test/test.cpp.obj: ../src/Test/test.cpp
 CMakeFiles/Alltests.dir/src/Test/test.cpp.obj: googletest-src/googlemock/include/gmock/gmock-actions.h

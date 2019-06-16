@@ -36,15 +36,15 @@ Childrens.h
 sstream
 -
 
-/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/src/Test/test.cpp
+C:/GEN/Gen-Lab05/src/Test/test.cpp
 Customer.h
 -
 gtest/gtest.h
-/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/src/Test/gtest/gtest.h
+C:/GEN/Gen-Lab05/src/Test/gtest/gtest.h
 gmock/gmock.h
 -
 memory.h
-/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/src/Test/memory.h
+C:/GEN/Gen-Lab05/src/Test/memory.h
 
 googletest-src/googlemock/include/gmock/gmock-actions.h
 errno.h

@@ -111,23 +111,24 @@ TEST(CustomerTest, NewReleaseTest) {
     ASSERT_EQ(true, m.hasBonus());
 }
 
-/*
+
 TEST(CustomerTest, AddFooterLinesTest){
-Customer c = Customer("Jupiter");
-std::ostringstream os;
-c.addFooterLines(os,5.5,3);
-ASSERT_EQ("Amount owed is 5.5\nYou earned 3 frequent renter points", os);
-}*/
-
-/*
-TEST(CustomerTest, AddBonusForATwoDayNewReleaseRentalTest) {
-    std::unique_ptr<MockMovie> m(new MockMovie());
-   // std::unique_ptr<MockNew_Release> m2(new MockNew_Release());
-    Rental r(*m,20);
-
-    EXPECT_CALL(*m,hasBonus()).WillRepeatedly(Return(false));
-
-    ASSERT_EQ(false, r.addBonusForATwoDayNewReleaseRental());
+    Customer c = Customer("Jupiter");
+    std::ostringstream os;
+    c.addFooterLines(os,5.5,3);
+    ASSERT_EQ("Amount owed is 5.5\nYou earned 3 frequent renter points", os.str());
 }
 
-*/
+TEST(CustomerTest, AddBonusForATwoDayNewReleaseRentalTest) {
+    std::unique_ptr<MockMovie> m(new MockMovie());
+    std::unique_ptr<MockNew_Release> m2(new MockNew_Release());
+
+    EXPECT_CALL(*m,hasBonus()).WillRepeatedly(Return(false));
+    EXPECT_CALL(*m2, hasBonus()).WillRepeatedly(Return(true));
+
+    Rental r(*m,20);
+    Rental r2(*m2,20);
+
+    ASSERT_EQ(false, r.addBonusForATwoDayNewReleaseRental());
+    ASSERT_EQ(true, r2.addBonusForATwoDayNewReleaseRental());
+}

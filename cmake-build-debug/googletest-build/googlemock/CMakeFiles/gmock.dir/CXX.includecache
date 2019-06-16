@@ -6,19 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/gmock-all.cc
+C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/gmock-all.cc
 gmock/gmock.h
-/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/gmock/gmock.h
+C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/gmock/gmock.h
 src/gmock-cardinalities.cc
-/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/src/gmock-cardinalities.cc
+C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/src/gmock-cardinalities.cc
 src/gmock-internal-utils.cc
-/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/src/gmock-internal-utils.cc
+C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/src/gmock-internal-utils.cc
 src/gmock-matchers.cc
-/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/src/gmock-matchers.cc
+C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/src/gmock-matchers.cc
 src/gmock-spec-builders.cc
-/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/src/gmock-spec-builders.cc
+C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/src/gmock-spec-builders.cc
 src/gmock.cc
-/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/src/gmock.cc
+C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src/googlemock/src/src/gmock.cc
 
 googletest-src/googlemock/include/gmock/gmock-actions.h
 errno.h

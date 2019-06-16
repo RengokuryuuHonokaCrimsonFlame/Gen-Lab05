@@ -17,9 +17,15 @@ public:
     virtual int getMaxDay() const;
     virtual double getFeePerExpendDay() const;
     virtual bool hasBonus() const;
+
+protected:
+    Children();
 };
 
+inline Children::Children(){}
+
 inline Children::~Children(){}
+
 inline double Children::getBaseAmount() const{return 1.5;}
 inline int Children::getMaxDay() const{return 3;}
 inline double Children::getFeePerExpendDay() const{return 1.5;}

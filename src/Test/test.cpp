@@ -76,12 +76,13 @@ TEST(CustomerTest, StatementTest) {
 
     ASSERT_EQ(customer.statement(), exceptedOutput);
 }
+
 TEST(CustomerTest, UpdateRecordWithRentalTest){
-    Customer c("Roberu");
-    std::unique_ptr<MockRental> r(new MockRental);
 
+    Customer c("RengokuryuhonokaCrimsonFlame");
 
-    c.updateRecordWithRental(&*r);
+    std::unique_ptr<MockRental> mr(new MockRental);
+    c.updateRecordWithRental(&*mr);
 }
 
 TEST(CustomerTest, AddFooterLinesTest){

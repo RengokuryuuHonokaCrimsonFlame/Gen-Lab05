@@ -7,8 +7,8 @@ project(googletest-download NONE)
 include(ExternalProject)
 ExternalProject_Add(googletest-download
                     GIT_REPOSITORY;https://github.com/google/googletest.git;GIT_TAG;master;UPDATE_DISCONNECTED 1
-                    SOURCE_DIR          "C:/GEN/Gen-Lab05/cmake-build-debug/googletest-src"
-                    BINARY_DIR          "C:/GEN/Gen-Lab05/cmake-build-debug/googletest-build"
+                    SOURCE_DIR          "/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-src"
+                    BINARY_DIR          "/Users/Robel_T/Documents/HEIG-VD/GEN/Labo/Lab5/Gen-Lab05/cmake-build-debug/googletest-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""

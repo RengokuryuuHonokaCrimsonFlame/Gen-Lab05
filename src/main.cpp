@@ -10,9 +10,13 @@ int main() {
     NewRelease * ae = new NewRelease( "Avengers: Endgame");
     Children * sw = new Children("Snow White");
 
-    customer.addRental( Rental( *kk, 7));
-    customer.addRental( Rental( *ae, 5));
-    customer.addRental( Rental( *sw, 3 ));
+    Rental r1(*kk, 7);
+    Rental r2(*ae, 5);
+    Rental r3 (*sw, 3);
+
+    customer.addRental(&r1);
+    customer.addRental(&r2);
+    customer.addRental(&r3);
 
     std::cout << customer.statement() << std::endl;
 

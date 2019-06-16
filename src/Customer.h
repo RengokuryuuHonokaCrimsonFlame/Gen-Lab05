@@ -2,6 +2,7 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 #include <string>
+#include <memory>
 #include <vector>
 #include "Rental.h"
 
@@ -11,16 +12,15 @@ public:
     explicit Customer( const std::string& name );
     virtual ~Customer();
 
-    virtual void addRental( const Rental& arg );
+    virtual void addRental( const Rental * arg );
     virtual std::string getName() const;
     virtual std::string statement();
 
-    virtual double determineAmountsForEachLine(int daysRented, const Movie& movie);
     virtual void addFooterLines(std::ostringstream& result, double amount, int frequentRenterPoints);
 
 private:
     std::string _name;
-    std::vector< Rental > _rentals;
+    std::vector< const Rental * > _rentals;
 };
 
 inline Customer::
@@ -33,7 +33,7 @@ Customer( const std::string& name )
 inline Customer::~Customer() {}
 
 inline void Customer::
-addRental( const Rental& arg ) { _rentals.push_back( arg ); }
+addRental( const Rental * arg ) { _rentals.push_back( arg ); }
 
 inline std::string Customer::
 getName() const { return _name; }

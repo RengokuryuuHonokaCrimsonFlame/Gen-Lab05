@@ -50,19 +50,22 @@ TEST(CustomerTest, StatementTest) {
 
     std::unique_ptr<MockRental> r1(new MockRental);
     EXPECT_CALL(*r1, getMovieName()).WillRepeatedly(Return("Karate Kid"));
+    EXPECT_CALL(*r1, addBonusForATwoDayNewReleaseRental()).WillRepeatedly(Return(false));
     EXPECT_CALL(*r1, determineAmountsForEachLine()).WillRepeatedly(Return(9.5));
 
     std::unique_ptr<MockRental> r2(new MockRental);
     EXPECT_CALL(*r2, getMovieName()).WillRepeatedly(Return("Avengers: Endgame"));
+    EXPECT_CALL(*r1, addBonusForATwoDayNewReleaseRental()).WillRepeatedly(Return(true));
     EXPECT_CALL(*r2, determineAmountsForEachLine()).WillRepeatedly(Return(15));
 
     std::unique_ptr<MockRental> r3(new MockRental);
     EXPECT_CALL(*r3, getMovieName()).WillRepeatedly(Return("Snow White"));
+    EXPECT_CALL(*r3, addBonusForATwoDayNewReleaseRental()).WillRepeatedly(Return(false));
     EXPECT_CALL(*r3, determineAmountsForEachLine()).WillRepeatedly(Return(1.5));
 
-    customer.addRental(*r1);
-    customer.addRental(*r2);
-    customer.addRental(*r3);
+    customer.addRental(&*r1);
+    customer.addRental(&*r2);
+    customer.addRental(&*r3);
 
     std::string exceptedOutput = "Rental Record for Olivier\n"
                                  "\tKarate Kid\t9.5\n"

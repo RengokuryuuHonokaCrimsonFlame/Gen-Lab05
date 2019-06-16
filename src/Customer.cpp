@@ -14,17 +14,17 @@ string Customer::statement()
     int frequentRenterPoints = 0;
     ostringstream result;
     result << "Rental Record for " << getName() << "\n";
-    for (Rental rental : _rentals) {
+    for (const Rental * rental : _rentals) {
 
         double thisAmount = 0;
-        thisAmount += rental.determineAmountsForEachLine();
+        thisAmount += rental->determineAmountsForEachLine();
 
 
         frequentRenterPoints++;
 
-        if (rental.addBonusForATwoDayNewReleaseRental()) frequentRenterPoints++;
+        if (rental->addBonusForATwoDayNewReleaseRental()) frequentRenterPoints++;
 
-        result << "\t" << rental.getMovieName() << "\t" << thisAmount << "\n";
+        result << "\t" << rental->getMovieName() << "\t" << thisAmount << "\n";
         totalAmount += thisAmount;
     }
 

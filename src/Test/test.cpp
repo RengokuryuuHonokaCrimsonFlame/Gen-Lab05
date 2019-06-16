@@ -82,7 +82,14 @@ TEST(CustomerTest, UpdateRecordWithRentalTest){
     Customer c("RengokuryuhonokaCrimsonFlame");
 
     std::unique_ptr<MockRental> mr(new MockRental);
-    c.updateRecordWithRental(&*mr);
+
+    EXPECT_CALL(*mr, getMovieName()).WillRepeatedly(Return("Jupiter contre attque"));
+    EXPECT_CALL(*mr, addBonusForATwoDayNewReleaseRental()).WillRepeatedly(Return(false));
+    EXPECT_CALL(*mr, determineAmountsForEachLine()).WillRepeatedly(Return(10));
+
+    int exceptedOutput = 10;
+
+    ASSERT_EQ(c.updateRecordWithRental(&*mr),exceptedOutput);
 }
 
 TEST(CustomerTest, AddFooterLinesTest){

@@ -8,29 +8,27 @@
 
 class Customer {
 public:
-    Customer();
     explicit Customer( const std::string& name );
     virtual ~Customer();
 
     virtual void addRental( const Rental * arg );
     virtual std::string getName() const;
     virtual std::string statement();
-
-    virtual void addFooterLines(std::ostringstream& result, double amount, int frequentRenterPoints);
+    virtual double updateRecordWithRental(const Rental *rental);
+    virtual std::string addFooterLines(double amount);
 
 private:
     std::string _name;
     std::vector< const Rental * > _rentals;
+    int frequentRenterPoints = 0;
+    std::ostringstream record;
 };
-
-inline Customer::
-Customer() {}
 
 inline Customer::
 Customer( const std::string& name )
         : _name( name ) {}
 
-inline Customer::~Customer() {}
+inline Customer::~Customer() = default;
 
 inline void Customer::
 addRental( const Rental * arg ) { _rentals.push_back( arg ); }

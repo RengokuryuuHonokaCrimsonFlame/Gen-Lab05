@@ -9,7 +9,7 @@
 
 class NewRelease : public Movie{
 public:
-    NewRelease( const std::string& title )
+    explicit NewRelease( const std::string& title )
             : Movie(title)
     {}
     virtual ~NewRelease();
@@ -22,9 +22,9 @@ protected:
     NewRelease();
 };
 
-inline NewRelease::NewRelease() {}
+inline NewRelease::NewRelease() = default;
 
-inline NewRelease::~NewRelease() {}
+inline NewRelease::~NewRelease() = default;
 
 inline double NewRelease::getBaseAmount() const{return 0;}
 inline int NewRelease::getMaxDay() const{return 0;}

@@ -11,31 +11,26 @@ using namespace std;
 string Customer::statement()
 {
     double totalAmount = 0;
-    int frequentRenterPoints = 0;
-    ostringstream result;
-    result << "Rental Record for " << getName() << "\n";
+    frequentRenterPoints = 0;
+    record.clear();
+    record << "Rental Record for " << getName() << "\n";
     for (const Rental * rental : _rentals) {
-
-        double thisAmount = 0;
-        thisAmount += rental->determineAmountsForEachLine();
-
-
-        frequentRenterPoints++;
-
-        if (rental->addBonusForATwoDayNewReleaseRental()) frequentRenterPoints++;
-
-        result << "\t" << rental->getMovieName() << "\t" << thisAmount << "\n";
-        totalAmount += thisAmount;
+        totalAmount += updateRecordWithRental(rental);
     }
+    return addFooterLines(totalAmount);
+}
 
-    addFooterLines(result, totalAmount, frequentRenterPoints);
-
-    return result.str();
+double Customer::updateRecordWithRental(const Rental *rental) {
+    double result = rental->determineAmountsForEachLine();
+    frequentRenterPoints += (rental->addBonusForATwoDayNewReleaseRental()) ? 2 : 1;
+    record << "\t" << rental->getMovieName() << "\t" << result << "\n";
+    return result;
 }
 
 
-void Customer::addFooterLines(std::ostringstream& result, double amount, int frequentRenterPoints){
-    result << "Amount owed is " << amount << "\n"
+std::string Customer::addFooterLines(double amount){
+    record << "Amount owed is " << amount << "\n"
            << "You earned " << frequentRenterPoints
            << " frequent renter points";
+    return record.str();
 }

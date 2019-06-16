@@ -9,7 +9,7 @@
 
 class Children : public Movie{
 public:
-    Children( const std::string& title)
+    explicit Children( const std::string& title)
             : Movie(title)
     {}
     virtual ~Children();
@@ -22,9 +22,9 @@ protected:
     Children();
 };
 
-inline Children::Children(){}
+inline Children::Children()= default;
 
-inline Children::~Children(){}
+inline Children::~Children()= default;
 
 inline double Children::getBaseAmount() const{return 1.5;}
 inline int Children::getMaxDay() const{return 3;}

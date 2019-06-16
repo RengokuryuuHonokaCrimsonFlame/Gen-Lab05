@@ -5,7 +5,7 @@
 
 class Movie {
 public:
-    Movie( const std::string& title );
+    explicit Movie( const std::string& title );
     virtual ~Movie();
     virtual std::string getTitle() const;
     virtual double getBaseAmount() const;
@@ -25,9 +25,9 @@ Movie( const std::string& title )
         : _title( title )
 {}
 
-inline Movie::Movie() {}
+inline Movie::Movie() = default;
 
-inline Movie::~Movie(){}
+inline Movie::~Movie()= default;
 
 inline std::string Movie::getTitle() const { return _title; }
 inline double Movie::getBaseAmount() const{return 2;}

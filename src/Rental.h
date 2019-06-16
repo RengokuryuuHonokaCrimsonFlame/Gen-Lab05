@@ -12,7 +12,7 @@ public:
     virtual ~Rental();
     virtual int getDaysRented() const;
     virtual double determineAmountsForEachLine() const;
-    virtual const Movie * getMovie() const;
+    //virtual const Movie * getMovie() const; //Ne sert plus a rien.
     virtual bool addBonusForATwoDayNewReleaseRental() const;
     virtual std::string getMovieName() const;
 
@@ -29,13 +29,13 @@ Rental( Movie& movie, int daysRented )
         : _movie( &movie )
         , _daysRented( daysRented ) {}
 
-inline Rental::Rental(){}
+inline Rental::Rental() = default;
 
-inline Rental::~Rental(){}
+inline Rental::~Rental()= default;
 
 inline int Rental::getDaysRented() const { return _daysRented; }
 
-inline const Movie * Rental::getMovie() const { return _movie; }
+//inline const Movie * Rental::getMovie() const { return _movie; }
 
 inline double Rental::determineAmountsForEachLine() const {
     double result = _movie->getBaseAmount();

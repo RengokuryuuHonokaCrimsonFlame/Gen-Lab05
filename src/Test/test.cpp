@@ -76,13 +76,17 @@ TEST(CustomerTest, StatementTest) {
 
     ASSERT_EQ(customer.statement(), exceptedOutput);
 }
+TEST(CustomerTest, UpdateRecordWithRentalTest){
+    Customer c("Roberu");
+    std::unique_ptr<MockRental> r(new MockRental);
 
+
+    c.updateRecordWithRental(&*r);
+}
 
 TEST(CustomerTest, AddFooterLinesTest){
-    Customer c = Customer("Jupiter");
-    std::ostringstream os;
-    c.addFooterLines(os,5.5,3);
-    ASSERT_EQ("Amount owed is 5.5\nYou earned 3 frequent renter points", os.str());
+    Customer c("Jupiter");
+    ASSERT_EQ("Amount owed is 5.5\nYou earned 0 frequent renter points", c.addFooterLines(5.5));
 }
 
 TEST(RentalTest, DetermineAmountsTest) {

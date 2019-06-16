@@ -2,7 +2,7 @@
 
 #include "Customer.h"
 
-int main() {
+public static void main() {
 
     Customer customer("Olivier");
 
